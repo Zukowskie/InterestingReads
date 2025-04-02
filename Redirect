@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Redirect</title>
+    <script>
+        // List of URLs
+        const urls = [
+            "https://en.wikipedia.org/wiki/4%E2%80%B233%E2%80%B3?useskin=vector",
+            "https://www.atlasobscura.com/",
+            "https://www.example3.com"
+        ];
+
+        // Function to redirect to a random URL
+        function redirectRandomly() {
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            window.location.href = urls[randomIndex];
+        }
+    </script>
+</head>
+<body onload="redirectRandomly()">
+    <p>Redirecting to a random site...</p>
+</body>
+</html>
