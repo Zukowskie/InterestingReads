@@ -5,32 +5,38 @@
     <script>
         async function redirectRandomly() {
             try {
-                // Fetch the external URLs file from GitHub
-                const response = await fetch('https://raw.githubusercontent.com/Zukowskie/InterestingReads/main/URLs.html
-');
-                
-                // Ensure the fetch was successful
+                // URL to fetch the list of URLs
+                const fetchURL = 'https://raw.githubusercontent.com/Zukowskie/InterestingReads/main/URLs.html';
+
+                // Fetch the URLs from the GitHub file
+                const response = await fetch(fetchURL);
+
+                // Check if fetch was successful
                 if (!response.ok) {
                     throw new Error(`Error fetching URLs: ${response.status}`);
                 }
 
-                // Get the text content of the file
+                // Get the file content as text
                 const fileContent = await response.text();
 
-                // Parse the URLs (assuming they're listed line by line in the file)
+                // Split the content into an array of URLs
                 const urls = fileContent.split(/\r?\n/).filter(url => url.trim());
 
-                // Pick a random URL and redirect
+                // Select a random URL
                 const randomIndex = Math.floor(Math.random() * urls.length);
-                window.location.href = urls[randomIndex];
+                const randomURL = urls[randomIndex];
+
+                // Redirect to the selected URL
+                window.location.href = randomURL;
             } catch (error) {
                 console.error(error);
+                // Display an error message if the process fails
                 document.body.innerHTML = '<p>Failed to redirect. Please check the console for errors.</p>';
             }
         }
     </script>
 </head>
 <body onload="redirectRandomly()">
-    <p>Redirecting to a random site...</p>
+    <p>We have such sights to show you...</p>
 </body>
 </html>
